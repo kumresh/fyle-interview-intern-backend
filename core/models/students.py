@@ -11,3 +11,11 @@ class Student(db.Model):
 
     def __repr__(self):
         return '<Student %r>' % self.id
+
+    # @classmethod
+    # def add_student(cls, new_student:'Student'):
+    #     student = new_student
+    #     db.session.add(new_student)
+    #
+    #     db.session.flush()
+    #     return student

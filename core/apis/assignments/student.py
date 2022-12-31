@@ -5,6 +5,7 @@ from core.apis.responses import APIResponse
 from core.models.assignments import Assignment
 
 from .schema import AssignmentSchema, AssignmentSubmitSchema
+
 student_assignments_resources = Blueprint('student_assignments_resources', __name__)
 
 
@@ -29,6 +30,17 @@ def upsert_assignment(p, incoming_payload):
     db.session.commit()
     upserted_assignment_dump = AssignmentSchema().dump(upserted_assignment)
     return APIResponse.respond(data=upserted_assignment_dump)
+
+
+# @student_assignments_resources.route('/create', methods=['POST'], strict_slashes=False)
+# @decorators.accept_payload
+# def insert_student(incoming_payload):
+#     student = StudentSchema().load(incoming_payload)
+#     inserted_data = Student.add_student(student)
+#     db.session.commit()
+#
+#     seralize_data = StudentSchema().dump(inserted_data)
+#     return APIResponse.respond(data=seralize_data)
 
 
 @student_assignments_resources.route('/assignments/submit', methods=['POST'], strict_slashes=False)

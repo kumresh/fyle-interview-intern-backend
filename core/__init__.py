@@ -14,6 +14,10 @@ migrate = Migrate(app, db)
 app.test_client()
 
 
+# @app.before_first_request
+# def create_table():
+#     db.create_all()
+
 # this is to enforce fk (not done by default in sqlite3)
 @event.listens_for(Engine, "connect")
 def _set_sqlite_pragma(dbapi_connection, connection_record):
